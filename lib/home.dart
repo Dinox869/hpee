@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:hpee/display.dart';
 import 'package:hpee/M_receipt.dart';
+import 'package:hpee/orders.dart';
 
 class home extends StatefulWidget
 {
@@ -114,7 +115,7 @@ Widget _Example0Tile (Color background, Color cornerground, String texts,String 
         {
           String adds = "Change Item";
           Navigator.push(context, MaterialPageRoute(builder: (context)=>
-              add_Item(title: adds)
+              orders()
           ));
         }
         else if (number == 1)
