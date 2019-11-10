@@ -30,6 +30,7 @@ class products extends State<product> {
   String checkoutIds = '';
   int _itemCount = 0;
   int total = 0;
+  TextEditingController _textEditingController = TextEditingController();
 // Future<File> imagefile;
 
   _pickimagefromgallery(ImageSource source) async
@@ -51,13 +52,95 @@ class products extends State<product> {
     var URL = (await taskSnapshot.ref.getDownloadURL());
     print("Url is $URL");
     print(widget.ID);
-    Upload(URL);
+    Upload(URL,'url');
 
   }
-  Upload( String st){
+  Upload( String st,String it){
     final Fb = Firestore.instance.collection('Freg leaves hotel');
-    Fb.document(widget.ID).updateData({'url': st });
+    Fb.document(widget.ID).updateData({it: st });
     print("Done for now");
+  }
+
+
+  _displayDialog(BuildContext contextS) async {
+    return showDialog(
+        context: contextS,
+        builder: (context) {
+          return AlertDialog(
+            title: Text('Change details.'),
+            content: TextField(
+              controller: _textEditingController,
+              decoration: InputDecoration(hintText: widget.details),
+            ),
+            actions: <Widget>[
+              new FlatButton(
+                child: new Text('CHANGE'),
+                onPressed: () {
+                  if(_textEditingController.text.length <= 0)
+                  {
+
+                  }else
+                  {
+                    Upload(_textEditingController.text, 'detail');
+                  }
+                  setState(() {
+                    _textEditingController.clear();
+                  });
+                  Navigator.of(context).pop();
+
+                },
+              ),
+          SizedBox(width: 09),
+              new FlatButton(
+                child: new Text('CANCEL'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        });
+  }
+  _displayDialogs(BuildContext contextS) async {
+    return showDialog(
+        context: contextS,
+        builder: (context) {
+          return AlertDialog(
+            title: Text('Change price.'),
+            content: TextField(
+              controller: _textEditingController,
+              decoration: InputDecoration(hintText: widget.price),
+            ),
+            actions: <Widget>[
+              new FlatButton(
+                child: new Text('CHANGE'),
+                onPressed: () {
+                  if(_textEditingController.text.length <= 0)
+                  {
+
+                  }else
+                  {
+                    Upload(_textEditingController.text, 'price');
+                    Navigator.of(context).pop();
+                  }
+                  setState(() {
+                    _textEditingController.clear();
+                  });
+                  Navigator.of(context).pop();
+
+
+                },
+              ),
+              SizedBox(width: 09),
+              new FlatButton(
+                child: new Text('CANCEL'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        });
   }
   @override
   Widget build(BuildContext context) {
@@ -161,14 +244,13 @@ class products extends State<product> {
                             ),
                                 onPressed: ()
                             {
-
-
+                              _displayDialog(context);
                             })
                           ],
                         ),
                         SizedBox(height: 30),
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             Text("Price: ",
                               style: TextStyle(
@@ -176,13 +258,16 @@ class products extends State<product> {
                                   fontSize: 18
                               ),
                             ),
-                            SizedBox(width: 20),
+
                             Text('\$ '+widget.price,
                               style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 16
                               ),
-                            )
+                            ),
+                            IconButton(icon: Icon(Icons.border_color,color: Colors.black,), onPressed: (){
+                              _displayDialogs(context);
+                            })
                           ],
                         )                        ,
                         SizedBox(height: 15),
