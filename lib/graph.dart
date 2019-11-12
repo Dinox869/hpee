@@ -12,17 +12,17 @@ class graph extends StatefulWidget
 class Graph extends State<graph>
 {
  int Total_Price = 0;
- var data = [0.0, 1.0, 3.0, 4.0, 5.0 ,7.0,0.4, 0.0];
+ var data = [0.0, 1.0, 3.0, 4.0, 5.0 ,7.0,4.0];
 
 
-  Calcget(DocumentSnapshot documents)
-  {
-    for(DocumentSnapshot document in documents )
-    {
-      Total_Price = Total_Price + int.parse(document.data['price']);
-    }
-return Total_Price;
-  }
+//   Calcget(List<DocumentSnapshot>  documents)
+//  {
+//    for(DocumentSnapshot document in documents )
+//    {
+//      Total_Price = Total_Price + int.parse(document.data['price']);
+//    }
+//return Total_Price;
+//  }
   @override
   Widget build(BuildContext context) {
     return new StreamBuilder<QuerySnapshot>(
@@ -55,56 +55,185 @@ return Total_Price;
                   title: Text("Statistics",
                     style: TextStyle(
                         color: Colors.white,
-                        fontSize: 08
+                        fontSize: 20
                     ),
                   ),
+                  centerTitle: true,
+                  backgroundColor:Color(0xff25242A),
                 ),
                 body: SingleChildScrollView(
                   scrollDirection: Axis.vertical,
-                  child: Column(
-                    children: <Widget>[
-                      Card(
-                          semanticContainer: true,
-                          clipBehavior: Clip.antiAliasWithSaveLayer,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          elevation: 2.0,
-                          child:Column(
-                            children: <Widget>[
-                              Calcget(snapshot.data.documents),
-                              Text("Mpesa",
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 13,
-                                    fontWeight: FontWeight.bold
-                                ),
-                              ),
-                              Divider(),
-                                Text(Total_Price.toString(),
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold
-                                ),
-                                ),
-                              Padding(padding: EdgeInsets.all(1.0),
-                                child: Sparkline(
-                                    data: data,
-                                  fillMode: FillMode.below,
-                                  fillGradient:  new LinearGradient(
-                                    begin: Alignment.topCenter,
-                                      end: Alignment.bottomCenter,
-                                      colors: [Color(0xff25242A),Color(0xff182640)],
+                  child:Container(
+                    child: Column(
+                      children: <Widget>[
+                        Card(
+                            semanticContainer: true,
+                            clipBehavior: Clip.antiAliasWithSaveLayer,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            elevation: 12.0,
+                            child:Column(
+                              children: <Widget>[
+                                //Calcget(snapshot.data.documents),
+                                Text("Mpesa",
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 23,
+                                      fontWeight: FontWeight.bold
                                   ),
                                 ),
-                              )
-                            ],
-                          )
-                      )
-                    ],
-                  ),
-
+                                Divider(),
+                                Text("Total money:",
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 28,
+                                      fontWeight: FontWeight.bold
+                                  ),
+                                ),
+                                SizedBox(height: 10),
+                                Text("\$ 40000",
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 28,
+                                      fontWeight: FontWeight.bold
+                                  ),
+                                ),
+                                SizedBox(height: 10),
+                                Padding(padding: EdgeInsets.only(left:4.0, right: 14.0, top: 2.0),
+                                  child: Sparkline(
+                                    data: data,
+                                    pointsMode: PointsMode.last,
+                                    pointSize: 8.0,
+                                    fillMode: FillMode.below,
+                                    fillGradient:  new LinearGradient(
+                                      begin: Alignment.topCenter,
+                                      end: Alignment.bottomCenter,
+                                      colors: [Color(0xff25242A),Color(0xffE2E3F4)],
+                                    ),
+                                  ),
+                                )
+                              ],
+                            )
+                        ),SizedBox(height: 10),
+                        Card(
+                            semanticContainer: true,
+                            clipBehavior: Clip.antiAliasWithSaveLayer,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            elevation: 2.0,
+                            child:Column(
+                              children: <Widget>[
+                                //Calcget(snapshot.data.documents),
+                                ListTile(
+                                  title: Text("Todays' Mpesa Amount:",
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 23,
+                                        fontWeight: FontWeight.bold
+                                    ),
+                                  ),
+                                  trailing: Text("\$400",
+                                    style: TextStyle(
+                                        color: Colors.green,
+                                        fontSize: 17,
+                                        fontWeight: FontWeight.bold
+                                    ),),
+                                ),
+                              ],
+                            )
+                        ),
+                        SizedBox(height:7),
+                        Card(
+                            semanticContainer: true,
+                            clipBehavior: Clip.antiAliasWithSaveLayer,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            elevation: 2.0,
+                            child:Column(
+                              children: <Widget>[
+                                //Calcget(snapshot.data.documents),
+                                ListTile(
+                                  title: Text("Todays' total number of Orders:",
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 23,
+                                        fontWeight: FontWeight.bold
+                                    ),
+                                  ),
+                                  trailing: Text("40",
+                                    style: TextStyle(
+                                        color: Colors.green,
+                                        fontSize: 17,
+                                        fontWeight: FontWeight.bold
+                                    ),),
+                                ),
+                              ],
+                            )
+                        ),
+                        SizedBox(height:7),
+                        Card(
+                            semanticContainer: true,
+                            clipBehavior: Clip.antiAliasWithSaveLayer,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            elevation: 2.0,
+                            child:Column(
+                              children: <Widget>[
+                                //Calcget(snapshot.data.documents),
+                                ListTile(
+                                  title: Text("Booked Accomodation rooms:",
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 23,
+                                        fontWeight: FontWeight.bold
+                                    ),
+                                  ),
+                                  trailing: Text("0",
+                                    style: TextStyle(
+                                        color: Colors.green,
+                                        fontSize: 17,
+                                        fontWeight: FontWeight.bold
+                                    ),),
+                                ),
+                              ],
+                            )
+                        ),
+                        SizedBox(height:7),
+                        Card(
+                            semanticContainer: true,
+                            clipBehavior: Clip.antiAliasWithSaveLayer,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            elevation: 2.0,
+                            child:Column(
+                              children: <Widget>[
+                                //Calcget(snapshot.data.documents),
+                                ListTile(
+                                  title: Text("Todays' Mpesa Amount:",
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 23,
+                                        fontWeight: FontWeight.bold
+                                    ),
+                                  ),
+                                  trailing: Text("\$400",
+                                    style: TextStyle(
+                                        color: Colors.green,
+                                        fontSize: 17,
+                                        fontWeight: FontWeight.bold
+                                    ),),
+                                ),
+                              ],
+                            )
+                        ),
+                      ],
+                    ),
+                  )
                 ),
               );
           }
