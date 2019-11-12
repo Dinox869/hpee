@@ -3,6 +3,7 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:hpee/display.dart';
 import 'package:hpee/M_receipt.dart';
 import 'package:hpee/orders.dart';
+import 'package:hpee/graph.dart';
 
 class home extends StatefulWidget
 {
@@ -63,10 +64,10 @@ class HOME extends State<home>
                   children: <Widget>
                   [
                     _Example0Tile(Color(0xffD14D95),Color(0xffE7866E),"album/cons.jpg","album/bill.png","Mpesa Receipts",1,context),
-                    _Example0Tile(Color(0xffA843AE),Color(0xffC3438A),"album/cons.jpg","album/stories.png","Add Item",2,context),
-                    _Example0Tile(Color(0xff9C3EAE),Color(0xffE26796),"album/cons.jpg","album/shuffle.png","Orders",3,context),
-                    _Example0Tile(Color(0xff6768CE),Color(0xffA85BCE),"album/cons.jpg","album/stock-market.png","Statistics",4,context),
-                    _Example0Tile(Color(0xff627AD3),Color(0xffAF52C5),"album/cons.jpg","album/mattress.png","Accomodation status",5,context)
+                    _Example0Tile(Color(0xffA843AE),Color(0xffC3438A),"album/add.jpg","album/stories.png","Items",2,context),
+                    _Example0Tile(Color(0xff9C3EAE),Color(0xffE26796),"album/food.jpg","album/shuffle.png","Orders",3,context),
+                    _Example0Tile(Color(0xff6768CE),Color(0xffA85BCE),"album/istock-494497554_goir_gross.jpg","album/stock-market.png","Statistics",4,context),
+                    _Example0Tile(Color(0xff627AD3),Color(0xffAF52C5),"album/hype.jpg","album/mattress.png","Accomodation status",5,context)
                   ],
                   mainAxisSpacing: 2.0,
                   crossAxisSpacing: 2.0,
@@ -105,11 +106,9 @@ Widget _Example0Tile (Color background, Color cornerground, String texts,String 
         }
         else if (number == 4)
         {
-//          String adds = "Change Item";
-//          BuildContext context;
-//          Navigator.push(context, MaterialPageRoute(builder: (context)=>
-//              add_Item(title: adds)
-//          ));
+          Navigator.push(context, MaterialPageRoute(builder: (context)=>
+              graph()
+          ));
         }
         else if (number == 3)
         {

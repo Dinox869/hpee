@@ -15,7 +15,7 @@ class M_receipts extends State<m_receipts>
   Widget _Stream(){
     return new StreamBuilder<QuerySnapshot>(
         stream:
-        Firestore.instance.collection("receipts_for_Mpesa").where('Hotelname',   isEqualTo: 'Freg Hotel').snapshots(),
+        Firestore.instance.collection("receipts_for_Mpesa").where('Hotelname', isEqualTo: 'Freg Hotel').snapshots(),
         builder: (BuildContext context,
             AsyncSnapshot<QuerySnapshot>snapshot) {
           if (snapshot.hasError)

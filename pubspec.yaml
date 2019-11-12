@@ -29,6 +29,7 @@ dependencies:
   firebase_storage:
   image_picker:
   path:
+  flutter_sparkline:
 
 
 dev_dependencies:
@@ -61,6 +62,14 @@ flutter:
    - album/shuffle.png
    - album/stock-market.png
    - album/stories.png
+   - album/acc.png
+   - album/add.jpg
+   - album/food.jpg
+   - album/glass.jpg
+   - album/hype.jpg
+   - album/istock-494497554_goir_gross.jpg
+   - album/world.jpg
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

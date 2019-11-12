@@ -60,11 +60,11 @@ class Add_Item extends State<add_Item>
                   primary: false,
                   staggeredTiles: _staggeredTile,
                   children: <Widget>[
-                    _Example0Tile(Color(0xff65DBB7),"album/mattress.png","Accomodation",1,context),
-                    _Example0Tile(Color(0xff799FEB),"album/cutlery.png","Food",2,context),
-                    _Example0Tile(Color(0xffE35672),"album/ginger-tea.png","Drinks",3,context),
-                    _Example0Tile(Color(0xff967AEC),"album/hotel.png","Home Page",4,context),
-                    _Example0Tile(Color(0xffE89C5B),"album/pool-party.png","Extra's",5,context)
+                    _Example0Tile(Color(0xff65DBB7),Color(0xff85DBA3),"album/acc.png","album/mattress.png","Accomodation",1,context),
+                    _Example0Tile(Color(0xff799FEB),Color(0xff55C2EB),"album/food.jpg","album/cutlery.png","Food",2,context),
+                    _Example0Tile(Color(0xffE35672),Color(0xffE35672),"album/glass.jpg","album/ginger-tea.png","Drinks",3,context),
+                    _Example0Tile(Color(0xff967AEC),Color(0xffB06FEC),"album/world.jpg","album/hotel.png","Home Page",4,context),
+                    _Example0Tile(Color(0xffE89C5B),Color(0xffE8A537),"album/m1.jpg","album/pool-party.png","Extra's",5,context)
                   ],
                   mainAxisSpacing: 2.0,
                   crossAxisSpacing: 2.0,
@@ -79,7 +79,7 @@ class Add_Item extends State<add_Item>
   }
 }
 
-Widget _Example0Tile (Color background, String texts, String text,int number,BuildContext context)
+Widget _Example0Tile (Color background,Color cornerground ,  String pic, String texts, String text,int number,BuildContext context)
 {
   return new Card(
     color: background,
@@ -128,6 +128,33 @@ Widget _Example0Tile (Color background, String texts, String text,int number,Bui
       },
       child: Stack(
         children: <Widget>[
+          Container(
+            //height: 30,
+            decoration: BoxDecoration(
+                color: Colors.transparent,
+                image: DecorationImage(
+                    fit: BoxFit.fill,
+                    image: AssetImage(pic)
+                )
+            ),
+          ),
+          Container(
+            decoration: BoxDecoration(
+                color: Colors.white,
+                gradient: LinearGradient(
+                    begin:  FractionalOffset.center,
+                    end: FractionalOffset.topLeft,
+                    colors: [
+                      background.withOpacity(0.7),
+                      cornerground
+                    ],
+                    stops: [
+                      0.0,
+                      1.0
+                    ]
+                )
+            ),
+          ),
           Padding(padding: EdgeInsets.only(top: 03,left: 03,right: 03),
             child: Align(
                 alignment: Alignment.topLeft,
@@ -135,7 +162,8 @@ Widget _Example0Tile (Color background, String texts, String text,int number,Bui
                     height: 50,
                     width: 50,
                     decoration: BoxDecoration(
-                        image: DecorationImage(image: AssetImage(texts),
+                        image: DecorationImage(
+                            image: AssetImage(texts),
                             fit: BoxFit.contain
                         )
                     )
