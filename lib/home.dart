@@ -4,6 +4,7 @@ import 'package:hpee/display.dart';
 import 'package:hpee/M_receipt.dart';
 import 'package:hpee/orders.dart';
 import 'package:hpee/graph.dart';
+import 'package:hpee/accomodation.dart';
 
 class home extends StatefulWidget
 {
@@ -126,11 +127,9 @@ Widget _Example0Tile (Color background, Color cornerground, String texts,String 
         }
         else
         {
-//          String adds = "Change Item";
-//          BuildContext context;
-//          Navigator.push(context, MaterialPageRoute(builder: (context)=>
-//              add_Item(title: adds)
-//          ));
+          Navigator.push(context, MaterialPageRoute(builder: (context)=>
+              accmo()
+          ));
         }
       },
       child: Stack(
